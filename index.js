@@ -66,7 +66,7 @@ app.get('/:formId/filteredResponses', async function (req, res) {
   
   const total = await getTotalData(with_query);
   try {
-    const parsed_filters = JSON.parse(filters);
+    const parsed_filters = filters ? JSON.parse(filters) : filters;
     const filtered = Filter(total, parsed_filters);
     res.json(Pagify(filtered, limit, offset));
   }
